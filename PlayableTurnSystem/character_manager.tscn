@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvfaui2wkubm1"]
+
+[ext_resource type="Texture2D" uid="uid://d257ffddlidy4" path="res://icon.svg" id="1_mwc77"]
+[ext_resource type="Script" uid="uid://bcvwel81emqpd" path="res://TurnManager.cs" id="1_ppik7"]
+[ext_resource type="Script" uid="uid://dr51besfm52l4" path="res://CharacterController.cs" id="2_ppik7"]
+
+[node name="CharacterManager" type="Node"]
+script = ExtResource("1_ppik7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(327, 307)
+texture = ExtResource("1_mwc77")
+script = ExtResource("2_ppik7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(526, 309)
+texture = ExtResource("1_mwc77")
+script = ExtResource("2_ppik7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(744, 310)
+texture = ExtResource("1_mwc77")
+script = ExtResource("2_ppik7")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(964, 310)
+texture = ExtResource("1_mwc77")
+script = ExtResource("2_ppik7")
