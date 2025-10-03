@@ -54,25 +54,27 @@ public partial class TurnManager : Node
 			switch (keyEvent.Keycode)
 			{
 				case Key.W:
-					//activeCharacters[currentCharacterIndex].MoveCharacter(0, -50f);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(0, -50f));
+					//activeCharacters[currentCharacterIndex].MoveCharacter(32.0f, -32.0f);
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(32.0f, -32.0f));
 					break;
 
 				case Key.A:
-					//activeCharacters[currentCharacterIndex].MoveCharacter(-50f, 0);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(-50f, 0));
+					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(-32.0f, -32.0f));
 					break;
 
 				case Key.S:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(0, 50f));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(-32.0f, 32.0f));
 					break;
 
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(50f, 0));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(32.0f, 32.0f));
 					break;
 			}
+			
+			
 		}
 		
 	}

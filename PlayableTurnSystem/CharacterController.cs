@@ -19,7 +19,7 @@ public partial class CharacterController : Node2D
 	//Called when this node's turn starts
 	public void ReceiveTurn()
 	{
-		this.Rotate(1);
+		//this.Rotate(1);
 		GD.Print(this.Name + " Turn Started");
 	}
 }
