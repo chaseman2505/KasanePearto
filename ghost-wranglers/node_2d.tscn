@@ -31,12 +31,15 @@ tile_map_data = PackedByteArray("AAD///3/AAAAAAAAAAAAAP7/AAAAAAEAAAD/////AAAAAAI
 tile_set = SubResource("TileSet_d2bti")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_0e48y")]
-visible = false
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_0e48y")]
-visible = false
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("2_0e48y")]
-visible = false
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("2_0e48y")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 706.0
+offset_top = 111.0
+offset_right = 746.0
+offset_bottom = 134.0

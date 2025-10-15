@@ -11,7 +11,6 @@ public partial class TurnManager : Node2D
 	//The initial value of this will indicate which character will take a turn first
 	int currentCharacterIndex = 0;
 
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -71,6 +70,14 @@ public partial class TurnManager : Node2D
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(32.0f, 32.0f));
+					break;
+
+				case Key.E:
+					if (activeCharacters[currentCharacterIndex].GlobalPosition.DistanceTo(activeCharacters[0].GlobalPosition) <= 100)
+					{
+						GD.Print(activeCharacters[currentCharacterIndex].Name + " Is Talking With Character 1");
+						GetNode<Label>("Label").Text = activeCharacters[currentCharacterIndex].Name + " Is Talking With Character 1";
+					}
 					break;
 			}
 			
