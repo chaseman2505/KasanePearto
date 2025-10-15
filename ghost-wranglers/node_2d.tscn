@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=10 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="PackedScene" uid="uid://dsv8d125pu0k7" path="res://character.tscn" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://cx5pvveepxuyy" path="res://test tile render.png" id="2_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://du874bststu6q" path="res://test tile big diamond.png" id="6_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://dyu5aa0kd472f" path="res://test tile small diamond.png" id="7_ir8iy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
+texture = ExtResource("2_q6r6c")
+texture_region_size = Vector2i(540, 270)
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0h7mo"]
 texture = ExtResource("6_4d7sh")
@@ -17,9 +23,10 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_d2bti"]
 tile_shape = 1
-tile_size = Vector2i(64, 32)
+tile_size = Vector2i(540, 270)
 sources/2 = SubResource("TileSetAtlasSource_0h7mo")
 sources/4 = SubResource("TileSetAtlasSource_nr8wp")
+sources/1 = SubResource("TileSetAtlasSource_kdubu")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0e48y")
@@ -27,7 +34,7 @@ script = ExtResource("1_0e48y")
 [node name="iso_TileMapLayer2" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 position = Vector2(67, -6)
-tile_map_data = PackedByteArray("AAD///3/AAAAAAAAAAAAAP7/AAAAAAEAAAD/////AAAAAAIAAAD//wEAAAAAAAQAAAACAAkABAAAAAAAAAADAAgABAAAAAAAAAADAAcABAAAAAAAAAAEAAgABAAAAAAAAAAEAAkABAAAAAAAAAADAAkABAAAAAAAAAACAAcABAAAAAAAAAADAAYABAAAAAAAAAADAAUABAAAAAAAAAAEAAYABAAAAAAAAAAEAAcABAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD///3/AAAAAAAAAAACAAkABAAAAAAAAAADAAgABAAAAAAAAAADAAcABAAAAAAAAAAEAAgABAAAAAAAAAAEAAkABAAAAAAAAAADAAkABAAAAAAAAAACAAcABAAAAAAAAAADAAYABAAAAAAAAAADAAUABAAAAAAAAAAEAAYABAAAAAAAAAAEAAcABAAAAAAAAAAAAP//AAAAAAAAAAADAAIAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAAAAQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAACAAEAAQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAADAP7/AQAAAAAAAAAGAAIAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_d2bti")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_0e48y")]
