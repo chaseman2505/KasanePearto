@@ -76,7 +76,7 @@ public partial class TurnManager : Node2D
 					if (activeCharacters[currentCharacterIndex].GlobalPosition.DistanceTo(activeCharacters[0].GlobalPosition) <= 100)
 					{
 						GD.Print(activeCharacters[currentCharacterIndex].Name + " Is Talking With Character 1");
-						GetNode<Label>("Label").Text = activeCharacters[currentCharacterIndex].Name + " Is Talking With Character 1";
+						GetNode<Label>("Label").Text = activeCharacters[currentCharacterIndex].Name + ": Woah, that's an object over there";
 					}
 					break;
 			}
