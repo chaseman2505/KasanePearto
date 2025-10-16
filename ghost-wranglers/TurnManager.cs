@@ -6,6 +6,7 @@ public partial class TurnManager : Node2D
 {
 	//A list of all characters that will actively take turns
 	List<CharacterController> activeCharacters = new List<CharacterController>();
+	float[] grid = [32.0f, 16.0f];
 
 	//The index of the character which is currently taking a turn
 	//The initial value of this will indicate which character will take a turn first
@@ -53,23 +54,22 @@ public partial class TurnManager : Node2D
 			switch (keyEvent.Keycode)
 			{
 				case Key.W:
-					//activeCharacters[currentCharacterIndex].MoveCharacter(32.0f, -32.0f);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(32.0f, -32.0f));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], -grid[1]));
 					break;
 
 				case Key.A:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(-32.0f, -32.0f));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0], -grid[1]));
 					break;
 
 				case Key.S:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(-32.0f, 32.0f));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0], grid[1]));
 					break;
 
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(32.0f, 32.0f));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], grid[1]));
 					break;
 
 				case Key.E:
