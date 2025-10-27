@@ -6,30 +6,73 @@ public partial class TurnManager : Node2D
 {
 	//A list of all characters that will actively take turns
 	List<CharacterController> activeCharacters = new List<CharacterController>();
+
+	//A list of all game objects that can be interacted with
+	List<WorldObject> worldObjects = new List<WorldObject>();
+
 	float[] grid = [32.0f, 16.0f];
 
 	//The index of the character which is currently taking a turn
 	//The initial value of this will indicate which character will take a turn first
 	int currentCharacterIndex = 0;
 
+	//A reference to the primary label UI
+	Label labelUI;
+
+
+
+	public List<CharacterController> ActiveCharacters
+	{
+		get { return activeCharacters; }
+		set { activeCharacters = value; }
+	}
+	
+	public int CurrentCharacterIndex
+	{
+		get { return currentCharacterIndex; }
+		set { currentCharacterIndex = value; }
+	}
+	
+	public List<WorldObject> WorldObjects
+	{
+		get { return worldObjects; }
+		set { worldObjects = value; }
+	}
+	
+	public Label LabelUI
+	{
+		get { return labelUI; }
+		set { labelUI = value; }
+	}
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		labelUI = GetNode<Label>("Label");
+
 		GD.Print("WASD to move, click to switch turns");
 
 		//Get all children of CharacterManager as Godot array
 		Godot.Collections.Array<Node> childrenArray = GetChildren();
 
 		//Populate activeCharacter list with all active character nodes
+		//and populate worldObjects with all world objects
 		foreach (Node child in childrenArray)
 		{
-			//Checks if the child has a CharacterController before adding to the list
+			//Checks if the child has a CharacterController script before adding to the activeCharacters list
 			if (child is CharacterController)
 			{
 				activeCharacters.Add((CharacterController)child);
 			}
+			//Checks if the child has a WorldObject script before adding to the worldObjects list
+			else if (child is WorldObject)
+			{
+				worldObjects.Add((WorldObject)child);
+			}
 		}
 
+		//Starts the turn for the first active character
 		activeCharacters[currentCharacterIndex].ReceiveTurn();
 	}
 
@@ -73,10 +116,12 @@ public partial class TurnManager : Node2D
 					break;
 
 				case Key.E:
-					if (activeCharacters[currentCharacterIndex].GlobalPosition.DistanceTo(activeCharacters[0].GlobalPosition) <= 100)
+					foreach(WorldObject worldObject in worldObjects)
 					{
-						GD.Print(activeCharacters[currentCharacterIndex].Name + " Is Talking With Character 1");
-						GetNode<Label>("Label").Text = activeCharacters[currentCharacterIndex].Name + ": Woah, that's an object over there";
+						if (activeCharacters[currentCharacterIndex].GlobalPosition.DistanceTo(worldObject.GlobalPosition) <= 50)
+						{
+							worldObject.TriggerInteraction();
+						}
 					}
 					break;
 			}

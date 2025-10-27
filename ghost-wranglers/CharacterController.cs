@@ -4,10 +4,15 @@ using System.Diagnostics;
 
 public partial class CharacterController : Node2D
 {
+	//A reference to the turn manager
+	TurnManager turnManager;
 	float[] grid = [8.0f, 4.0f];
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		turnManager = GetParent<TurnManager>();
 		/*
 		Vector2 gridBound = new Vector2(0,0);
 		gridBound[0] = Position[0] - (Position[0] % grid[0]) + grid[0];
