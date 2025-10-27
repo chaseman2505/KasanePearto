@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=16 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="PackedScene" uid="uid://dsv8d125pu0k7" path="res://character.tscn" id="2_0e48y"]
 [ext_resource type="Texture2D" uid="uid://cx5pvveepxuyy" path="res://test tile render.png" id="2_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://du874bststu6q" path="res://test tile big diamond.png" id="6_4d7sh"]
-[ext_resource type="Script" uid="uid://d00o2ufcrvo75" path="res://WorldObject.cs" id="6_d21ai"]
+[ext_resource type="Script" uid="uid://21ullftcdw1c" path="res://CharacterController.cs" id="6_ir8iy"]
+[ext_resource type="PackedScene" uid="uid://d3gj7ut1bvspc" path="res://world_object.tscn" id="6_kdubu"]
+[ext_resource type="PackedScene" uid="uid://c0svhtlqrvhsb" path="res://box_object.tscn" id="7_d21ai"]
+[ext_resource type="Texture2D" uid="uid://dtdv5livre33i" path="res://Player.png" id="7_hqns4"]
 [ext_resource type="Texture2D" uid="uid://dyu5aa0kd472f" path="res://test tile small diamond.png" id="7_ir8iy"]
-[ext_resource type="Texture2D" uid="uid://ku3aoy30160p" path="res://Obstacle.png" id="7_rj586"]
+[ext_resource type="PackedScene" uid="uid://b33oisdjlj747" path="res://door_object.tscn" id="10_ir8iy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
 texture = ExtResource("2_q6r6c")
@@ -30,7 +33,7 @@ sources/2 = SubResource("TileSetAtlasSource_0h7mo")
 sources/4 = SubResource("TileSetAtlasSource_nr8wp")
 sources/1 = SubResource("TileSetAtlasSource_kdubu")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0e48y")
@@ -44,8 +47,17 @@ tile_set = SubResource("TileSet_d2bti")
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_0e48y")]
 position = Vector2(128, 212)
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_0e48y")]
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 position = Vector2(324, 150)
+script = ExtResource("6_ir8iy")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+position = Vector2(-1.5258789e-05, -1.0000076)
+scale = Vector2(0.615, 0.615)
+texture = ExtResource("7_hqns4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("2_0e48y")]
 position = Vector2(197, 212)
@@ -53,20 +65,23 @@ position = Vector2(197, 212)
 [node name="CharacterBody2D4" parent="." instance=ExtResource("2_0e48y")]
 position = Vector2(262, 150)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 706.0
-offset_top = 111.0
-offset_right = 746.0
-offset_bottom = 134.0
-
-[node name="WorldObject" type="CharacterBody2D" parent="."]
+[node name="WorldObject" parent="." instance=ExtResource("6_kdubu")]
 position = Vector2(545, 318)
-script = ExtResource("6_d21ai")
 
-[node name="Sprite2D" type="Sprite2D" parent="WorldObject"]
-position = Vector2(-2.500001, 0.9999981)
-scale = Vector2(0.6184211, 0.65068495)
-texture = ExtResource("7_rj586")
+[node name="WorldObject2" parent="." instance=ExtResource("6_kdubu")]
+position = Vector2(872, 405)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldObject"]
-shape = SubResource("RectangleShape2D_4d7sh")
+[node name="BoxObject" parent="." instance=ExtResource("7_d21ai")]
+position = Vector2(944, 294)
+
+[node name="DoorObject" parent="." instance=ExtResource("10_ir8iy")]
+position = Vector2(494, 526)
+
+[node name="DoorObject2" parent="." instance=ExtResource("10_ir8iy")]
+position = Vector2(795, 517)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 489.0
+offset_top = 30.0
+offset_right = 529.0
+offset_bottom = 53.0
