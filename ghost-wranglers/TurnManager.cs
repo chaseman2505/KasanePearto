@@ -6,11 +6,15 @@ public partial class TurnManager : Node2D
 {
 	//A list of all characters that will actively take turns
 	List<CharacterController> activeCharacters = new List<CharacterController>();
+	//TileSet.TileSize;
+	//float[] grid = [32.0f, 16.0f];
+	Vector2 grid;
+	TileMapLayer map;
 
 	//A list of all game objects that can be interacted with
 	List<WorldObject> worldObjects = new List<WorldObject>();
 
-	float[] grid = [32.0f, 16.0f];
+	
 
 	//The index of the character which is currently taking a turn
 	//The initial value of this will indicate which character will take a turn first
@@ -65,6 +69,9 @@ public partial class TurnManager : Node2D
 			{
 				activeCharacters.Add((CharacterController)child);
 			}
+			else if(child is TileMapLayer){
+				map = (TileMapLayer)child;
+			}
 			//Checks if the child has a WorldObject script before adding to the worldObjects list
 			else if (child is WorldObject)
 			{
@@ -74,6 +81,9 @@ public partial class TurnManager : Node2D
 
 		//Starts the turn for the first active character
 		activeCharacters[currentCharacterIndex].ReceiveTurn();
+		
+		grid[0] = map.TileSet.TileSize.X;
+		grid[1] = map.TileSet.TileSize.Y;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
