@@ -69,9 +69,9 @@ public partial class TurnManager : Node2D
 			{
 				activeCharacters.Add((CharacterController)child);
 			}
-			
 			else if(child is TileMapLayer){
 				map = (TileMapLayer)child;
+			}
 			//Checks if the child has a WorldObject script before adding to the worldObjects list
 			else if (child is WorldObject)
 			{
