@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=29 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://bfk0lsd7a07wl" path="res://carpet tile.png" id="2_ir8iy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dyu5aa0kd472f" path="res://test tile small diamond.png" id="7_ir8iy"]
 [ext_resource type="Texture2D" uid="uid://ku3aoy30160p" path="res://Obstacle.png" id="7_rj586"]
 [ext_resource type="Script" uid="uid://21ullftcdw1c" path="res://CharacterController.cs" id="8_hqns4"]
+[ext_resource type="Texture2D" uid="uid://dv1nkoxi7rsog" path="res://isometric tilemap sep.png" id="9_d2bti"]
 [ext_resource type="Texture2D" uid="uid://mpn08vn6duyv" path="res://wall_back_right.png" id="9_nr8wp"]
 [ext_resource type="Texture2D" uid="uid://bqbhum1bq84sv" path="res://player_placeholder.png" id="9_x0ka3"]
 
@@ -68,8 +69,19 @@ texture = ExtResource("5_rj586")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rjqkl"]
+texture = ExtResource("9_d2bti")
+texture_region_size = Vector2i(72, 104)
+0:9/0 = 0
+0:9/0/texture_origin = Vector2i(0, 32)
+1:9/0 = 0
+1:9/0/texture_origin = Vector2i(0, 32)
+2:9/0 = 0
+2:9/0/texture_origin = Vector2i(0, 32)
+3:9/0 = 0
+3:9/0/texture_origin = Vector2i(0, 32)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rjqkl"]
-load_path = "res://.godot/imported/iso_tile.png-22fe1886c3f7d12f0ecefdbde6a3adae.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ta5nu"]
 texture = SubResource("CompressedTexture2D_rjqkl")
@@ -95,6 +107,7 @@ sources/3 = SubResource("TileSetAtlasSource_d2bti")
 sources/7 = SubResource("TileSetAtlasSource_ta5nu")
 sources/8 = SubResource("TileSetAtlasSource_flf07")
 sources/12 = SubResource("TileSetAtlasSource_k73cj")
+sources/6 = SubResource("TileSetAtlasSource_rjqkl")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
@@ -105,7 +118,7 @@ script = ExtResource("1_0e48y")
 
 [node name="base_tiles" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD/////BQAAAAAAAAD///7/BQAAAAAAAAD+//3/BQAAAAAAAAAAAP7/BQAAAAAAAAAAAP3/BQAAAAAAAAD///3/BQAAAAAAAAD9/wAADAABAAkAAAD9////DAABAAkAAAD+//7/DAABAAkAAAABAP7/DAABAAkAAAABAP//DAABAAkAAAACAAAADAABAAkAAAA=")
+tile_map_data = PackedByteArray("AAD/////BQAAAAAAAAD///7/BQAAAAAAAAD+//3/BQAAAAAAAAAAAP7/BQAAAAAAAAAAAP3/BQAAAAAAAAD///3/BQAAAAAAAAD9/wAADAABAAkAAAD9////DAABAAkAAAD+//7/DAABAAkAAAABAP7/DAABAAkAAAABAP//DAABAAkAAAACAAAADAABAAkAAAACAAEABgACAAkAAAABAAEABgACAAkAAAACAAIABgACAAkAAAABAAAABgACAAkAAAAAAP//BgACAAkAAAA=")
 tile_set = SubResource("TileSet_d2bti")
 
 [node name="walls" type="TileMapLayer" parent="."]
