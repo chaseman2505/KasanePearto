@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b33oisdjlj747"]
 
 [ext_resource type="Script" uid="uid://dps57pvk4aya4" path="res://DoorObject.cs" id="1_naxlh"]
-[ext_resource type="Texture2D" uid="uid://cuyxyxetq8bes" path="res://Door left.png" id="2_naxlh"]
+[ext_resource type="Texture2D" uid="uid://3o4tkgqsxr73" path="res://door left.png" id="2_naxlh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
 
@@ -9,7 +9,7 @@
 script = ExtResource("1_naxlh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.053)
+scale = Vector2(1, 1.06)
 texture = ExtResource("2_naxlh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
