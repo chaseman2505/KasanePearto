@@ -22,5 +22,6 @@ public partial class WorldObject : CharacterBody2D
 	{
 		GD.Print(turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex] + " Is Interacting With " + this.Name);
 		turnManager.LabelUI.Text = turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex].Name + " Is Interacting With " + this.Name;
+		turnManager.LabelUI.Visible = true;
 	}
 }

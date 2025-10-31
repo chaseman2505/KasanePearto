@@ -10,7 +10,8 @@ public partial class DoorObject : WorldObject
 	{
 		GD.Print(turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex] + " is interacting with" + this.Name);
 		turnManager.LabelUI.Text = turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex].Name + " is interacting with " + this.Name;
-
+		turnManager.LabelUI.Visible = true;
+		
 		//Changes the state of the doorObject
 		isOpen = !isOpen;
 
