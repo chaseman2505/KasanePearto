@@ -18,11 +18,11 @@ public partial class DoorObject : WorldObject
 		//Changes the texture of the sprite (the sprite2D must be the first child of the door object)
 		if (isOpen)
 		{
-			GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://Obstacle.png");
+			GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://Door right.png");
 		}
 		else
 		{
-			GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://icon.svg");
+			GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://Door left.png");
 		}
 	}
 }
