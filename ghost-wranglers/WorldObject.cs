@@ -20,7 +20,8 @@ public partial class WorldObject : CharacterBody2D
 	//
 	public virtual void TriggerInteraction()
 	{
-		GD.Print(turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex] + " Is Interacting With " + this.Name);
-		turnManager.LabelUI.Text = turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex].Name + " Is Interacting With " + this.Name;
+		//turnManager.LabelUI.Text = turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex].Name + " Is Interacting With " + this.Name;
+		turnManager.LabelUI.Text = "There's a bloodstain here, why is it so far from the body?\nPress Esc to Toggle Text On/Off";
+		turnManager.LabelUI.Visible = true;
 	}
 }

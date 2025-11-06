@@ -125,6 +125,7 @@ public partial class TurnManager : Node2D
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], grid[1]));
 					break;
 
+				//Interacts with any nearby world objects
 				case Key.E:
 					foreach(WorldObject worldObject in worldObjects)
 					{
@@ -133,6 +134,11 @@ public partial class TurnManager : Node2D
 							worldObject.TriggerInteraction();
 						}
 					}
+					break;
+				
+				//Toggles label visibility
+				case Key.Escape:
+					labelUI.Visible = !labelUI.Visible;
 					break;
 			}
 			
