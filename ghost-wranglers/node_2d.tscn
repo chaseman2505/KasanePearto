@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=21 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
@@ -70,6 +70,10 @@ b = Vector2(32, 191)
 a = Vector2(447, 170)
 b = Vector2(257, 79)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x0ka3"]
+a = Vector2(198, 272)
+b = Vector2(34, 190)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
@@ -97,6 +101,7 @@ shape = SubResource("SegmentShape2D_ir8iy")
 shape = SubResource("SegmentShape2D_hqns4")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="walls/Area2D"]
+shape = SubResource("SegmentShape2D_x0ka3")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(142, 174)
