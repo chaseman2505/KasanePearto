@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=20 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
@@ -62,6 +62,14 @@ sources/4 = SubResource("TileSetAtlasSource_nr8wp")
 sources/1 = SubResource("TileSetAtlasSource_kdubu")
 sources/0 = SubResource("TileSetAtlasSource_x0ka3")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ir8iy"]
+a = Vector2(255, 80)
+b = Vector2(32, 191)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hqns4"]
+a = Vector2(447, 170)
+b = Vector2(257, 79)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
@@ -78,6 +86,17 @@ tile_set = SubResource("TileSet_d2bti")
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAACAAcAAAAEAAgAAAACAAgAAAAEAAgAAAABAAkAAAAEAAgAAAABAAoAAAAEAAgAAAAAAAsAAAAEAAgAAAADAAYAAAAEAAgAAAADAAUAAAADAAgAAAAEAAYAAAAFAAgAAAAEAAcAAAAFAAgAAAAFAAgAAAAFAAgAAAAFAAkAAAAFAAgAAAAAAAwAAAAFAAgAAAAAAA0AAAAFAAgAAAABAA4AAAAFAAgAAAABAA8AAAAFAAgAAAACABAAAAAFAAgAAAAGAAwAAAAAAAgAAAAGAA0AAAACAAgAAAAHAA4AAAACAAgAAAAHAA8AAAACAAgAAAAIABAAAAACAAgAAAAIABEAAAACAAgAAAAJABIAAAACAAgAAAAJABMAAAABAAgAAAAJABQAAAABAAgAAAAIABUAAAABAAgAAAAIABYAAAABAAgAAAAHABcAAAABAAgAAAADABIAAAABAAgAAAACABMAAAABAAgAAAABABUAAAABAAgAAAACABQAAAABAAgAAAABABYAAAABAAgAAAAAABcAAAABAAgAAAAJABoAAAABAAgAAAAJABkAAAABAAgAAAAKABgAAAABAAgAAAAKABcAAAABAAgAAAALABYAAAABAAgAAAALABUAAAABAAgAAAAIABoAAAACAAgAAAAHABkAAAACAAgAAAAHABgAAAACAAgAAAAOABAAAAAAAAgAAAAOABEAAAACAAgAAAAPABIAAAACAAgAAAAPABMAAAACAAgAAAAQABQAAAACAAgAAAAMABQAAAABAAgAAAAMABMAAAABAAgAAAANABIAAAABAAgAAAANABEAAAABAAgAAAAQABUAAAACAAgAAAACABEAAAAFAAgAAAADABEAAAABAAgAAAAEABAAAAABAAgAAAAGAAsAAAAEAAgAAAAGAAoAAAAFAAgAAAAEAA8AAAABAAgAAAAFAA0AAAABAAgAAAA=")
 tile_set = SubResource("TileSet_d2bti")
+
+[node name="Area2D" type="Area2D" parent="walls"]
+position = Vector2(-4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Area2D"]
+shape = SubResource("SegmentShape2D_ir8iy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/Area2D"]
+shape = SubResource("SegmentShape2D_hqns4")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls/Area2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(142, 174)

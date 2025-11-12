@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pqixnu6pgmb7"
-path="res://.godot/imported/Door right.png-07406201711352042ede88df38838db4.ctex"
+uid="uid://cccrhjv6mv4nr"
+path="res://.godot/imported/isometric tilemap.png-9127b8678736bd42d24768779f3c4df0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Door right.png"
-dest_files=["res://.godot/imported/Door right.png-07406201711352042ede88df38838db4.ctex"]
+source_file="res://level assets/isometric tilemap.png"
+dest_files=["res://.godot/imported/isometric tilemap.png-9127b8678736bd42d24768779f3c4df0.ctex"]
 
 [params]
 

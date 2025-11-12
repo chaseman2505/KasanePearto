@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pqixnu6pgmb7"
-path="res://.godot/imported/Door right.png-07406201711352042ede88df38838db4.ctex"
+uid="uid://bkifil0080dtc"
+path="res://.godot/imported/brick wall left.png-84515563104d8a7e295647c3adfef1d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Door right.png"
-dest_files=["res://.godot/imported/Door right.png-07406201711352042ede88df38838db4.ctex"]
+source_file="res://level assets/brick wall left.png"
+dest_files=["res://.godot/imported/brick wall left.png-84515563104d8a7e295647c3adfef1d1.ctex"]
 
 [params]
 
