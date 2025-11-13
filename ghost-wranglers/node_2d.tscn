@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
 [ext_resource type="Texture2D" uid="uid://cx5pvveepxuyy" path="res://test tile render.png" id="2_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://du874bststu6q" path="res://test tile big diamond.png" id="6_4d7sh"]
+[ext_resource type="Script" uid="uid://ckm4seawc12re" path="res://Collisionscript.cs" id="6_hqns4"]
 [ext_resource type="Script" uid="uid://21ullftcdw1c" path="res://CharacterController.cs" id="6_ir8iy"]
 [ext_resource type="PackedScene" uid="uid://d3gj7ut1bvspc" path="res://world_object.tscn" id="6_kdubu"]
 [ext_resource type="PackedScene" uid="uid://c0svhtlqrvhsb" path="res://box_object.tscn" id="7_d21ai"]
@@ -70,10 +71,6 @@ b = Vector2(37, 191)
 a = Vector2(447, 170)
 b = Vector2(257, 79)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_x0ka3"]
-a = Vector2(198, 272)
-b = Vector2(34, 190)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
@@ -91,21 +88,23 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAACAAcAAAAEAAgAAAACAAgAAAAEAAgAAAABAAkAAAAEAAgAAAABAAoAAAAEAAgAAAAAAAsAAAAEAAgAAAADAAYAAAAEAAgAAAADAAUAAAADAAgAAAAEAAYAAAAFAAgAAAAEAAcAAAAFAAgAAAAFAAgAAAAFAAgAAAAFAAkAAAAFAAgAAAAAAAwAAAAFAAgAAAAAAA0AAAAFAAgAAAABAA4AAAAFAAgAAAABAA8AAAAFAAgAAAACABAAAAAFAAgAAAAGAAwAAAAAAAgAAAAGAA0AAAACAAgAAAAHAA4AAAACAAgAAAAHAA8AAAACAAgAAAAIABAAAAACAAgAAAAIABEAAAACAAgAAAAJABIAAAACAAgAAAAJABMAAAABAAgAAAAJABQAAAABAAgAAAAIABUAAAABAAgAAAAIABYAAAABAAgAAAAHABcAAAABAAgAAAADABIAAAABAAgAAAACABMAAAABAAgAAAABABUAAAABAAgAAAACABQAAAABAAgAAAABABYAAAABAAgAAAAAABcAAAABAAgAAAAJABoAAAABAAgAAAAJABkAAAABAAgAAAAKABgAAAABAAgAAAAKABcAAAABAAgAAAALABYAAAABAAgAAAALABUAAAABAAgAAAAIABoAAAACAAgAAAAHABkAAAACAAgAAAAHABgAAAACAAgAAAAOABAAAAAAAAgAAAAOABEAAAACAAgAAAAPABIAAAACAAgAAAAPABMAAAACAAgAAAAQABQAAAACAAgAAAAMABQAAAABAAgAAAAMABMAAAABAAgAAAANABIAAAABAAgAAAANABEAAAABAAgAAAAQABUAAAACAAgAAAACABEAAAAFAAgAAAADABEAAAABAAgAAAAEABAAAAABAAgAAAAGAAsAAAAEAAgAAAAGAAoAAAAFAAgAAAAEAA8AAAABAAgAAAAFAA0AAAABAAgAAAA=")
 tile_set = SubResource("TileSet_d2bti")
 
-[node name="Area2D" type="Area2D" parent="walls"]
+[node name="Area2DPlane" type="Area2D" parent="walls"]
 position = Vector2(-4, -1)
+collision_layer = 255
+script = ExtResource("6_hqns4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Area2DPlane"]
 visible = false
 shape = SubResource("SegmentShape2D_ir8iy")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/Area2DPlane"]
 visible = false
 shape = SubResource("SegmentShape2D_hqns4")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls/Area2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls/Area2DPlane"]
 visible = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/Area2DPlane"]
 polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452, 176, 420, 191, 358, 224, 420, 192, 644, 303, 484, 384, 580, 431, 933, 257, 1123, 352, 941, 443, 965, 432, 1115, 509, 1021, 558, 870, 480, 907.34875, 459.87683, 612, 608, 518, 559, 454, 593)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]

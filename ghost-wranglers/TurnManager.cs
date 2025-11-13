@@ -10,6 +10,7 @@ public partial class TurnManager : Node2D
 	//float[] grid = [32.0f, 16.0f];
 	Vector2 grid;
 	TileMapLayer map;
+	Area2D collisionPlane;
 
 	//A list of all game objects that can be interacted with
 	List<WorldObject> worldObjects = new List<WorldObject>();
@@ -59,6 +60,10 @@ public partial class TurnManager : Node2D
 
 		//Get all children of CharacterManager as Godot array
 		Godot.Collections.Array<Node> childrenArray = GetChildren();
+		
+		Node walls = GetNode("walls");
+		collisionPlane = (Area2D)walls.GetNode("Area2DPlane");
+		
 
 		//Populate activeCharacter list with all active character nodes
 		//and populate worldObjects with all world objects
@@ -77,6 +82,9 @@ public partial class TurnManager : Node2D
 			{
 				worldObjects.Add((WorldObject)child);
 			}
+			//else if(child is 	Area2D){
+				//collisionPlane = (Area2D)child;
+			//}
 		}
 
 		//Starts the turn for the first active character
@@ -95,6 +103,7 @@ public partial class TurnManager : Node2D
 	//Character input is processed here
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		Vector2 revert = new Vector2(0,0);
 		//If the mouse is clicked, switch which character is currently taking a turn
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
@@ -104,25 +113,30 @@ public partial class TurnManager : Node2D
 		//If WASD is released, moves the current character a certain amount
 		if (@event is InputEventKey keyEvent && !keyEvent.Pressed)
 		{
+			
 			switch (keyEvent.Keycode)
 			{
 				case Key.W:
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], -grid[1]));
+					revert = new Vector2(grid[0], -grid[1]);
 					break;
 
 				case Key.A:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0], -grid[1]));
+					revert = new Vector2(-grid[0], -grid[1]);
 					break;
 
 				case Key.S:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0], grid[1]));
+					revert = new Vector2(-grid[0], grid[1]);
 					break;
 
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], grid[1]));
+					revert = new Vector2(grid[0], grid[1]);
 					break;
 
 				//Interacts with any nearby world objects
@@ -140,9 +154,15 @@ public partial class TurnManager : Node2D
 				case Key.Escape:
 					labelUI.Visible = !labelUI.Visible;
 					break;
+					
+				
 			}
-			
-			
+			if(!collisionPlane.OverlapsBody((activeCharacters[currentCharacterIndex]))){
+				activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;
+			}
+			//else{
+				//activeCharacters[currentCharacterIndex].prevPos = activeCharacters[currentCharacterIndex].Position;
+			//}
 		}
 		
 	}
