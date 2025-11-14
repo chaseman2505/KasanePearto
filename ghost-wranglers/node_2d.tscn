@@ -108,11 +108,11 @@ visible = false
 polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452, 176, 420, 191, 358, 224, 420, 192, 644, 303, 484, 384, 580, 431, 933, 257, 1123, 352, 941, 443, 965, 432, 1115, 509, 1021, 558, 870, 480, 907.34875, 459.87683, 612, 608, 518, 559, 454, 593)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(142, 174)
+position = Vector2(160, 176)
 script = ExtResource("6_ir8iy")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(1.8189894e-12, -3)
+position = Vector2(0, -16)
 scale = Vector2(0.615, 0.615)
 texture = ExtResource("8_hqns4")
 
@@ -133,11 +133,11 @@ texture = ExtResource("8_hqns4")
 shape = SubResource("RectangleShape2D_ir8iy")
 
 [node name="CharacterBody2D3" type="CharacterBody2D" parent="."]
-position = Vector2(211, 210)
+position = Vector2(224, 208)
 script = ExtResource("6_ir8iy")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D3"]
-position = Vector2(1.8189894e-12, -3)
+position = Vector2(0, -16)
 scale = Vector2(0.615, 0.615)
 texture = ExtResource("8_hqns4")
 
@@ -146,11 +146,11 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="CharacterBody2D4" type="CharacterBody2D" parent="."]
-position = Vector2(257, 119)
+position = Vector2(256, 128)
 script = ExtResource("6_ir8iy")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D4"]
-position = Vector2(1.8189894e-12, -3)
+position = Vector2(0, -16)
 scale = Vector2(0.615, 0.615)
 texture = ExtResource("8_hqns4")
 

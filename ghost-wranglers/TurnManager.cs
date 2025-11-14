@@ -90,8 +90,8 @@ public partial class TurnManager : Node2D
 		//Starts the turn for the first active character
 		activeCharacters[currentCharacterIndex].ReceiveTurn();
 		
-		grid[0] = map.TileSet.TileSize.X;
-		grid[1] = map.TileSet.TileSize.Y;
+		grid[0] = map.TileSet.TileSize.X/2;
+		grid[1] = map.TileSet.TileSize.Y/2;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -103,7 +103,7 @@ public partial class TurnManager : Node2D
 	//Character input is processed here
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		Vector2 revert = new Vector2(0,0);
+		Vector2 revert = new Vector2(0, 0);
 		//If the mouse is clicked, switch which character is currently taking a turn
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
@@ -113,7 +113,9 @@ public partial class TurnManager : Node2D
 		//If WASD is released, moves the current character a certain amount
 		if (@event is InputEventKey keyEvent && !keyEvent.Pressed)
 		{
-			
+			//Tracks the previous position of the character before the character moves
+			activeCharacters[currentCharacterIndex].prevPos = activeCharacters[currentCharacterIndex].Position;
+
 			switch (keyEvent.Keycode)
 			{
 				case Key.W:
@@ -141,7 +143,7 @@ public partial class TurnManager : Node2D
 
 				//Interacts with any nearby world objects
 				case Key.E:
-					foreach(WorldObject worldObject in worldObjects)
+					foreach (WorldObject worldObject in worldObjects)
 					{
 						if (activeCharacters[currentCharacterIndex].GlobalPosition.DistanceTo(worldObject.GlobalPosition) <= 50)
 						{
@@ -149,22 +151,37 @@ public partial class TurnManager : Node2D
 						}
 					}
 					break;
-				
+
 				//Toggles label visibility
 				case Key.Escape:
 					labelUI.Visible = !labelUI.Visible;
 					break;
-					
-				
 			}
-			if(!collisionPlane.OverlapsBody((activeCharacters[currentCharacterIndex]))){
+
+			/*if (!collisionPlane.OverlapsBody((activeCharacters[currentCharacterIndex])))
+			{
+				activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;
+				GD.Print("dsgdfsg");
+			}*/
+			//else{
+			//activeCharacters[currentCharacterIndex].prevPos = activeCharacters[currentCharacterIndex].Position;
+			//}
+
+			var space = collisionPlane.GetWorld2D().DirectSpaceState;
+			
+			var point = new PhysicsPointQueryParameters2D
+			{
+				Position = activeCharacters[currentCharacterIndex].Position,
+				CollideWithAreas = true,
+				CollideWithBodies = false
+			};
+
+			if (space.IntersectPoint(point).Count == 0)
+			{
 				activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;
 			}
-			//else{
-				//activeCharacters[currentCharacterIndex].prevPos = activeCharacters[currentCharacterIndex].Position;
-			//}
 		}
-		
+
 	}
 
 	//Called when the turn is being switched
