@@ -56,6 +56,12 @@ public partial class TurnManager : Node2D
 		set { grid = value; }
 	}
 
+	public Area2D CollisionPlane
+	{
+		get { return collisionPlane; }
+		set { collisionPlane = value; }
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
