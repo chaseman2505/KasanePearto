@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=19 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
@@ -10,8 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dyu5aa0kd472f" path="res://test tile small diamond.png" id="7_ir8iy"]
 [ext_resource type="Texture2D" uid="uid://bqbhum1bq84sv" path="res://player_placeholder.png" id="8_hqns4"]
 [ext_resource type="PackedScene" uid="uid://b33oisdjlj747" path="res://door_object.tscn" id="10_ir8iy"]
-[ext_resource type="Script" uid="uid://j7vg04rc1xbt" path="res://EnemyController.cs" id="11_x0ka3"]
-[ext_resource type="Texture2D" uid="uid://ku3aoy30160p" path="res://Obstacle.png" id="12_0h7mo"]
+[ext_resource type="PackedScene" uid="uid://c3v46vgjxrael" path="res://enemy.tscn" id="11_hqns4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0ka3"]
 texture = ExtResource("2_hqns4")
@@ -67,8 +66,6 @@ sources/0 = SubResource("TileSetAtlasSource_x0ka3")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0e48y")
@@ -169,14 +166,5 @@ text = "---> Character 1
        Character 3
        Character 4"
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
+[node name="Enemy" parent="." instance=ExtResource("11_hqns4")]
 position = Vector2(418, 451)
-script = ExtResource("11_x0ka3")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-position = Vector2(-2.500001, 0.9999981)
-scale = Vector2(0.6184211, 0.65068495)
-texture = ExtResource("12_0h7mo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("RectangleShape2D_4d7sh")
