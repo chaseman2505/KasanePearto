@@ -100,8 +100,10 @@ public partial class TurnManager : Node2D
 		//Starts the turn for the first active character
 		activeCharacters[currentCharacterIndex].ReceiveTurn();
 		
-		grid[0] = map.TileSet.TileSize.X/2;
-		grid[1] = map.TileSet.TileSize.Y/2;
+		grid[0] = map.TileSet.TileSize.X;
+		grid[1] = map.TileSet.TileSize.Y;
+		GD.Print(grid[0]);
+		GD.Print(grid[1]);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -129,25 +131,25 @@ public partial class TurnManager : Node2D
 			switch (keyEvent.Keycode)
 			{
 				case Key.W:
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], -grid[1]));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, -grid[1] / 2));
 					revert = new Vector2(grid[0], -grid[1]);
 					break;
 
 				case Key.A:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0], -grid[1]));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, -grid[1] / 2));
 					revert = new Vector2(-grid[0], -grid[1]);
 					break;
 
 				case Key.S:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0], grid[1]));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, grid[1] / 2));
 					revert = new Vector2(-grid[0], grid[1]);
 					break;
 
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
-					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0], grid[1]));
+					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, grid[1] / 2));
 					revert = new Vector2(grid[0], grid[1]);
 					break;
 
@@ -168,17 +170,10 @@ public partial class TurnManager : Node2D
 					break;
 			}
 
-			/*if (!collisionPlane.OverlapsBody((activeCharacters[currentCharacterIndex])))
-			{
-				activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;
-				GD.Print("dsgdfsg");
-			}*/
-			//else{
-			//activeCharacters[currentCharacterIndex].prevPos = activeCharacters[currentCharacterIndex].Position;
-			//}
-
+			//The space where the character can move
 			var space = collisionPlane.GetWorld2D().DirectSpaceState;
-			
+
+			//The point the character is currently at
 			var point = new PhysicsPointQueryParameters2D
 			{
 				Position = activeCharacters[currentCharacterIndex].Position,
@@ -186,6 +181,7 @@ public partial class TurnManager : Node2D
 				CollideWithBodies = false
 			};
 
+			//Moves character back to previous position if they are out of bounds
 			if (space.IntersectPoint(point).Count == 0)
 			{
 				activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;

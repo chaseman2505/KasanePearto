@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3v46vgjxrael"]
+[gd_scene load_steps=4 format=3 uid="uid://yyyjulco3bk2"]
 
-[ext_resource type="Script" path="res://EnemyController.cs" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://j7vg04rc1xbt" path="res://EnemyController.cs" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://ku3aoy30160p" path="res://Obstacle.png" id="2_qi2p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
@@ -9,7 +9,6 @@
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.500001, 0.9999981)
 scale = Vector2(0.6184211, 0.65068495)
 texture = ExtResource("2_qi2p4")
 
