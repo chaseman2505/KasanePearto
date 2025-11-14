@@ -50,13 +50,16 @@ public partial class TurnManager : Node2D
 		set { labelUI = value; }
 	}
 
+	public Vector2 Grid
+	{
+		get { return grid; }
+		set { grid = value; }
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		labelUI = GetNode<Label>("Label");
-
-		GD.Print("WASD to move, click to switch turns");
 
 		//Get all children of CharacterManager as Godot array
 		Godot.Collections.Array<Node> childrenArray = GetChildren();
@@ -74,7 +77,8 @@ public partial class TurnManager : Node2D
 			{
 				activeCharacters.Add((CharacterController)child);
 			}
-			else if(child is TileMapLayer){
+			else if (child is TileMapLayer)
+			{
 				map = (TileMapLayer)child;
 			}
 			//Checks if the child has a WorldObject script before adding to the worldObjects list
@@ -191,6 +195,25 @@ public partial class TurnManager : Node2D
 		if (currentCharacterIndex >= activeCharacters.Count)
 		{
 			currentCharacterIndex = 0;
+		}
+
+		switch(currentCharacterIndex)
+		{
+			case 0:
+				this.GetNode<Label>("CharacterIndicator").Text = "---> Character 1\n       Character 2\n       Character 3\n       Character 4";
+				break;
+
+			case 1:
+				this.GetNode<Label>("CharacterIndicator").Text = "       Character 1\n---> Character 2\n       Character 3\n       Character 4";
+				break;
+
+			case 2:
+				this.GetNode<Label>("CharacterIndicator").Text = "       Character 1\n       Character 2\n---> Character 3\n       Character 4";
+				break;
+
+			case 3:
+				this.GetNode<Label>("CharacterIndicator").Text = "       Character 1\n       Character 2\n       Character 3\n---> Character 4";
+				break;
 		}
 
 		activeCharacters[currentCharacterIndex].ReceiveTurn();

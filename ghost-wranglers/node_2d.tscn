@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cxj6p1g83mryo" path="res://corpse.png" id="7_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://bqbhum1bq84sv" path="res://player_placeholder.png" id="8_hqns4"]
 [ext_resource type="PackedScene" uid="uid://b33oisdjlj747" path="res://door_object.tscn" id="10_ir8iy"]
+[ext_resource type="PackedScene" path="res://enemy.tscn" id="11_hqns4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0ka3"]
 texture = ExtResource("2_hqns4")
@@ -232,3 +233,16 @@ text = "Press WASD to Move
 Press E to Interact
 Press M1 to Switch Characters
 Press Esc to Toggle Text On/Off"
+
+[node name="CharacterIndicator" type="Label" parent="."]
+offset_left = 980.0
+offset_top = 24.0
+offset_right = 1020.0
+offset_bottom = 47.0
+text = "---> Character 1
+       Character 2
+       Character 3
+       Character 4"
+
+[node name="Enemy" parent="." instance=ExtResource("11_hqns4")]
+position = Vector2(418, 451)
