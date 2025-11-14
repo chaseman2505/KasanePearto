@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=25 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d3gj7ut1bvspc" path="res://world_object.tscn" id="6_kdubu"]
 [ext_resource type="PackedScene" uid="uid://c0svhtlqrvhsb" path="res://box_object.tscn" id="7_d21ai"]
 [ext_resource type="Texture2D" uid="uid://dyu5aa0kd472f" path="res://test tile small diamond.png" id="7_ir8iy"]
+[ext_resource type="Texture2D" uid="uid://cxj6p1g83mryo" path="res://corpse.png" id="7_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://bqbhum1bq84sv" path="res://player_placeholder.png" id="8_hqns4"]
 [ext_resource type="PackedScene" uid="uid://b33oisdjlj747" path="res://door_object.tscn" id="10_ir8iy"]
 
@@ -71,6 +72,39 @@ b = Vector2(37, 191)
 a = Vector2(447, 170)
 b = Vector2(257, 79)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqns4"]
+texture = ExtResource("2_hqns4")
+texture_region_size = Vector2i(72, 104)
+0:6/0 = 0
+0:6/0/texture_origin = Vector2i(0, 32)
+1:6/0 = 0
+1:6/0/texture_origin = Vector2i(0, 32)
+2:6/0 = 0
+2:6/0/texture_origin = Vector2i(0, 32)
+3:6/0 = 0
+3:6/0/texture_origin = Vector2i(0, 32)
+4:6/0 = 0
+4:6/0/texture_origin = Vector2i(0, 32)
+5:6/0 = 0
+5:6/0/texture_origin = Vector2i(0, 32)
+2:7/0 = 0
+2:7/0/texture_origin = Vector2i(0, 32)
+3:7/0 = 0
+3:7/0/texture_origin = Vector2i(0, 32)
+4:7/0 = 0
+4:7/0/texture_origin = Vector2i(0, 32)
+5:7/0 = 0
+5:7/0/texture_origin = Vector2i(0, 32)
+6:7/0 = 0
+6:7/0/texture_origin = Vector2i(0, 32)
+
+[sub_resource type="TileSet" id="TileSet_x0ka3"]
+tile_shape = 1
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_hqns4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
@@ -106,6 +140,20 @@ visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/Area2DPlane"]
 polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452, 176, 420, 191, 358, 224, 420, 192, 644, 303, 484, 384, 580, 431, 933, 257, 1123, 352, 941, 443, 965, 432, 1115, 509, 1021, 558, 870, 480, 907.34875, 459.87683, 612, 608, 518, 559, 454, 593)
+
+[node name="Props" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAACABUAAAACAAYAAAAHABgAAAAFAAYAAAAOABkAAAAEAAYAAAACABkAAAAGAAcAAAADABoAAAAAAAYAAAADABsAAAAEAAcAAAAHABkAAAADAAcAAAA=")
+tile_set = SubResource("TileSet_x0ka3")
+
+[node name="corpse" type="CharacterBody2D" parent="."]
+position = Vector2(609, 556)
+
+[node name="Sprite2D" type="Sprite2D" parent="corpse"]
+texture = ExtResource("7_x0ka3")
+offset = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="corpse"]
+shape = SubResource("RectangleShape2D_0h7mo")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(160, 176)
@@ -159,9 +207,11 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="WorldObject" parent="." instance=ExtResource("6_kdubu")]
+visible = false
 position = Vector2(611, 545)
 
 [node name="WorldObject2" parent="." instance=ExtResource("6_kdubu")]
+visible = false
 position = Vector2(196, 402)
 
 [node name="BoxObject" parent="." instance=ExtResource("7_d21ai")]
