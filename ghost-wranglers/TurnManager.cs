@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public partial class TurnManager : Node2D
 {
+	public enum GameState { win, loss, active};
+
 	//A list of all characters that will actively take turns
 	List<CharacterController> activeCharacters = new List<CharacterController>();
 	//TileSet.TileSize;
