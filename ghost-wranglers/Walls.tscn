@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://k7qmoxrf0oj3"]
+
+[ext_resource type="Texture2D" uid="uid://mpn08vn6duyv" path="res://wall_back_right.png" id="1_ndvdd"]
+[ext_resource type="Texture2D" uid="uid://bkifil0080dtc" path="res://level assets/brick wall left.png" id="2_p1d13"]
+[ext_resource type="Texture2D" uid="uid://bhf5leou7m3y8" path="res://level assets/brick wall right.png" id="3_ltgc6"]
+[ext_resource type="Texture2D" uid="uid://d2elwqwqqe58k" path="res://level assets/white wallpaper left.png" id="4_kvs3l"]
+[ext_resource type="Texture2D" uid="uid://ds7jj27h6olw0" path="res://level assets/white wallpaper right.png" id="5_cdtxm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndvdd"]
+size = Vector2(32, 40)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="WAll1" type="Sprite2D" parent="."]
+position = Vector2(192, 632)
+texture = ExtResource("1_ndvdd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WAll1"]
+position = Vector2(4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WAll1/StaticBody2D"]
+position = Vector2(12, 13)
+shape = SubResource("RectangleShape2D_ndvdd")
+
+[node name="BrickWallLeft" type="Sprite2D" parent="."]
+position = Vector2(344, 632)
+texture = ExtResource("2_p1d13")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BrickWallLeft"]
+position = Vector2(4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrickWallLeft/StaticBody2D"]
+position = Vector2(-20, 9)
+shape = SubResource("RectangleShape2D_ndvdd")
+
+[node name="BrickWallRight" type="Sprite2D" parent="."]
+position = Vector2(448, 632)
+texture = ExtResource("3_ltgc6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BrickWallRight"]
+position = Vector2(4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrickWallRight/StaticBody2D"]
+position = Vector2(12, 9)
+shape = SubResource("RectangleShape2D_ndvdd")
+
+[node name="wallpaper left" type="Sprite2D" parent="."]
+position = Vector2(552, 632)
+texture = ExtResource("4_kvs3l")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wallpaper left"]
+position = Vector2(4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallpaper left/StaticBody2D"]
+position = Vector2(-20, 9)
+shape = SubResource("RectangleShape2D_ndvdd")
+
+[node name="wallpaper right" type="Sprite2D" parent="."]
+position = Vector2(592, 640)
+texture = ExtResource("5_cdtxm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="wallpaper right"]
+position = Vector2(4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallpaper right/StaticBody2D"]
+position = Vector2(12, 9)
+shape = SubResource("RectangleShape2D_ndvdd")

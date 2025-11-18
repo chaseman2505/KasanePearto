@@ -5,6 +5,7 @@ using System.Diagnostics;
 public partial class CharacterController : Node2D
 {
 	float[] grid = [32.0f, 8.0f];
+	public Vector2 prevPos;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -13,6 +14,8 @@ public partial class CharacterController : Node2D
 		gridBound[0] = (GlobalPosition[0] % grid[0]) - 2;
 		gridBound[1] = (GlobalPosition[1] % grid[1]) ;
 		Translate(gridBound);
+		
+		prevPos = Position;
 		
 	}
 
