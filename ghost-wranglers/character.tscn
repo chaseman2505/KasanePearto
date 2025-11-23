@@ -6,7 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(0, 3)
 script = ExtResource("1_pjt0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

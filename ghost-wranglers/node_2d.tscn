@@ -129,15 +129,12 @@ collision_layer = 255
 script = ExtResource("6_hqns4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Area2DPlane"]
-visible = false
 shape = SubResource("SegmentShape2D_ir8iy")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/Area2DPlane"]
-visible = false
 shape = SubResource("SegmentShape2D_hqns4")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="walls/Area2DPlane"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/Area2DPlane"]
 polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452, 176, 420, 191, 358, 224, 420, 192, 644, 303, 484, 384, 580, 431, 933, 257, 1123, 352, 941, 443, 965, 432, 1115, 509, 1021, 558, 870, 480, 907.34875, 459.87683, 612, 608, 518, 559, 454, 593)
@@ -208,18 +205,16 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="WorldObject" parent="." instance=ExtResource("6_kdubu")]
-visible = false
 position = Vector2(611, 545)
 
 [node name="WorldObject2" parent="." instance=ExtResource("6_kdubu")]
-visible = false
 position = Vector2(196, 402)
 
 [node name="BoxObject" parent="." instance=ExtResource("7_d21ai")]
 position = Vector2(932, 290)
 
 [node name="DoorObject" parent="." instance=ExtResource("10_ir8iy")]
-position = Vector2(353, 206)
+position = Vector2(340, 229)
 
 [node name="DoorObject2" parent="." instance=ExtResource("10_ir8iy")]
 position = Vector2(937, 427)

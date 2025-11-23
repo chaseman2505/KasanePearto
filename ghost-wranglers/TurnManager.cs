@@ -6,6 +6,9 @@ public partial class TurnManager : Node2D
 {
 	public enum GameState { win, loss, active};
 
+	//The game state starts as active
+	GameState gameState = GameState.active;  
+
 	//A list of all characters that will actively take turns
 	List<CharacterController> activeCharacters = new List<CharacterController>();
 	//TileSet.TileSize;
@@ -104,13 +107,29 @@ public partial class TurnManager : Node2D
 		
 		grid[0] = map.TileSet.TileSize.X;
 		grid[1] = map.TileSet.TileSize.Y;
-		GD.Print(grid[0]);
-		GD.Print(grid[1]);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//Checks for character deaths
+		for(int i = 0; i < activeCharacters.Count; i++)
+		{
+			if (activeCharacters[i].health == 0)
+			{
+				//Removes character from the list, makes them invisible, and switches to another character
+				activeCharacters[currentCharacterIndex].Visible = false;
+				activeCharacters.Remove(activeCharacters[i]);
+				i--;
+				TurnSwitch();
+			}
+		}
+
+		//Checks if every character is dead
+		if (activeCharacters.Count == 0)
+		{
+			gameState = GameState.loss;
+		}
 	}
 
 
@@ -134,25 +153,21 @@ public partial class TurnManager : Node2D
 			{
 				case Key.W:
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, -grid[1] / 2));
-					revert = new Vector2(grid[0], -grid[1]);
 					break;
 
 				case Key.A:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, -grid[1] / 2));
-					revert = new Vector2(-grid[0], -grid[1]);
 					break;
 
 				case Key.S:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, grid[1] / 2));
-					revert = new Vector2(-grid[0], grid[1]);
 					break;
 
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, grid[1] / 2));
-					revert = new Vector2(grid[0], grid[1]);
 					break;
 
 				//Interacts with any nearby world objects
@@ -175,6 +190,9 @@ public partial class TurnManager : Node2D
 			//The space where the character can move
 			var space = collisionPlane.GetWorld2D().DirectSpaceState;
 
+			//The space where the doors are located
+			var door = worldObjects[0].GetWorld2D().DirectSpaceState;
+
 			//The point the character is currently at
 			var point = new PhysicsPointQueryParameters2D
 			{
@@ -183,11 +201,62 @@ public partial class TurnManager : Node2D
 				CollideWithBodies = false
 			};
 
+			var results = space.IntersectPoint(point);
+
 			//Moves character back to previous position if they are out of bounds
-			if (space.IntersectPoint(point).Count == 0)
+			if (results.Count == 0)
 			{
 				activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;
 			}
+
+			
+			/*
+			if(door.IntersectPoint(point).Count == 0)
+			{
+				GD.Print("gdfsgdf");
+				//activeCharacters[currentCharacterIndex].Position = activeCharacters[currentCharacterIndex].prevPos;
+			}*/
+
+			
+			foreach (var result in results)
+			{
+				//var collider = result["collider"] as Node;
+				var collider = (Node)(result["collider"]);
+				GD.Print(collider.Name);
+				if (collider == worldObjects[0])        // your door node
+				{
+	   				GD.Print("Colliding with door");
+				}
+			}
+
+
+				
+var world = collisionPlane.GetWorld2D().DirectSpaceState;
+
+var bigRect = new RectangleShape2D
+{
+	Size = new Vector2(10000, 10000)
+};
+
+var shapeParams = new PhysicsShapeQueryParameters2D
+{
+	Shape = bigRect,
+	Transform = new Transform2D(0, Vector2.Zero),
+	CollideWithBodies = true,
+	CollideWithAreas = true
+};
+
+var results2 = world.IntersectShape(shapeParams, 128); // up to 128 objects
+
+foreach (var result in results2)
+{
+	GD.Print("Found collider: " + ((Node)result["collider"]).Name);
+}
+
+
+
+
+
 		}
 
 	}

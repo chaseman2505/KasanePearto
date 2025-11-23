@@ -5,7 +5,13 @@ using System.Diagnostics;
 public partial class CharacterController : Node2D
 {
 	float[] grid = [32.0f, 8.0f];
+	
+	//The previous position that the character was located before it moved
 	public Vector2 prevPos;
+
+	public int health = 1;
+
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
