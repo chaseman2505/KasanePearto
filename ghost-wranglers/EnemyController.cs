@@ -101,7 +101,7 @@ public partial class EnemyController : CharacterBody2D
 					moveVector *= -1;
 				}
 			}
-			//this.Translate(moveVector);
+			this.Translate(moveVector);
 		}
 	}
 	

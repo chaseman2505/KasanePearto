@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=27 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cxj6p1g83mryo" path="res://corpse.png" id="7_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://bqbhum1bq84sv" path="res://player_placeholder.png" id="8_hqns4"]
 [ext_resource type="PackedScene" uid="uid://b33oisdjlj747" path="res://door_object.tscn" id="10_ir8iy"]
+[ext_resource type="Script" uid="uid://d00o2ufcrvo75" path="res://WorldObject.cs" id="10_nr8wp"]
 [ext_resource type="PackedScene" uid="uid://yyyjulco3bk2" path="res://enemy.tscn" id="11_hqns4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0ka3"]
@@ -104,11 +105,11 @@ tile_shape = 1
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_hqns4")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir8iy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0e48y")
@@ -142,16 +143,6 @@ polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452,
 [node name="Props" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAACABUAAAACAAYAAAAHABgAAAAFAAYAAAAOABkAAAAEAAYAAAACABkAAAAGAAcAAAADABoAAAAAAAYAAAADABsAAAAEAAcAAAAHABkAAAADAAcAAAA=")
 tile_set = SubResource("TileSet_x0ka3")
-
-[node name="corpse" type="CharacterBody2D" parent="."]
-position = Vector2(609, 556)
-
-[node name="Sprite2D" type="Sprite2D" parent="corpse"]
-texture = ExtResource("7_x0ka3")
-offset = Vector2(0, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="corpse"]
-shape = SubResource("RectangleShape2D_0h7mo")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(160, 176)
@@ -201,10 +192,20 @@ texture = ExtResource("8_hqns4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D4"]
 shape = SubResource("RectangleShape2D_wtcfe")
 
-[node name="WorldObject" parent="." instance=ExtResource("6_kdubu")]
+[node name="WorldObject" type="CharacterBody2D" parent="."]
 position = Vector2(609, 556)
+script = ExtResource("10_nr8wp")
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldObject"]
+position = Vector2(0, -15)
+scale = Vector2(0.6184211, 0.65068495)
+texture = ExtResource("7_x0ka3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldObject"]
+shape = SubResource("RectangleShape2D_4d7sh")
 
 [node name="WorldObject2" parent="." instance=ExtResource("6_kdubu")]
+visible = false
 position = Vector2(196, 402)
 
 [node name="BoxObject" parent="." instance=ExtResource("7_d21ai")]
