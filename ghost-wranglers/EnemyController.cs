@@ -42,7 +42,6 @@ public partial class EnemyController : CharacterBody2D
 		{
 			if (this.GlobalPosition.DistanceTo(character.GlobalPosition) <= 20)
 			{
-				GD.Print("damage");
 				character.health = 0;
 			}
 		}

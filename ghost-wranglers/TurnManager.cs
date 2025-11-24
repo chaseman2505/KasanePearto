@@ -135,11 +135,14 @@ public partial class TurnManager : Node2D
 		{
 			if (activeCharacters[i].health == 0)
 			{
-				//Removes character from the list, makes them invisible, and switches to another character
-				activeCharacters[currentCharacterIndex].Visible = false;
+				//Switches to another character if the current character died, removes character from the list, and makes them invisible
+				if (i == currentCharacterIndex)
+				{
+					TurnSwitch();
+				}
+				activeCharacters[i].Visible = false;
 				activeCharacters.Remove(activeCharacters[i]);
 				i--;
-				TurnSwitch();
 			}
 		}
 
