@@ -4,12 +4,22 @@ using System;
 public partial class DoorObject : WorldObject
 {
 	//If the door is open
-	bool isOpen = false;
+	public bool isOpen = false;
 
+	//What the interaction text will display
+	[Export]
+	protected string interactionText = "This is a door. Like most objects, I can interact with it by pressing E.\nPress Esc to Hide/Show text";
+
+	public override void _Ready()
+	{
+		turnManager = GetParent<TurnManager>();
+	}
+
+	
 	public override void TriggerInteraction()
 	{
 		//turnManager.LabelUI.Text = turnManager.ActiveCharacters[turnManager.CurrentCharacterIndex].Name + " is interacting with " + this.Name;
-		turnManager.LabelUI.Text = "This is a door. Like most objects, I can interact with it by pressing E.\nPress Esc to Toggle Text On/Off";
+		turnManager.LabelUI.Text = interactionText;
 		turnManager.LabelUI.Visible = true;
 		
 		//Changes the state of the doorObject

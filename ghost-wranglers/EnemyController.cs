@@ -37,6 +37,16 @@ public partial class EnemyController : CharacterBody2D
 			firstProcessFrame = false;
 		}
 
+		//Checks if the enemy ever comes close enough to a character and kills them if so
+		foreach (CharacterController character in turnManager.ActiveCharacters)
+		{
+			if (this.GlobalPosition.DistanceTo(character.GlobalPosition) <= 20)
+			{
+				GD.Print("damage");
+				character.health = 0;
+			}
+		}
+
 		//Increments timer by the elapsed delta time
 		timer += delta;
 
@@ -91,7 +101,7 @@ public partial class EnemyController : CharacterBody2D
 					moveVector *= -1;
 				}
 			}
-			this.Translate(moveVector);
+			//this.Translate(moveVector);
 		}
 	}
 	
