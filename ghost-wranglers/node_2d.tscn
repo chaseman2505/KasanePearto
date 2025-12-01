@@ -150,6 +150,10 @@ tile_set = SubResource("TileSet_x0ka3")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(160, 176)
 script = ExtResource("6_ir8iy")
+frontRightSpriteFilePath = "jack front right.png"
+frontLeftSpriteFilePath = "jack front left.png"
+backRightSpriteFilePath = "jack back right.png"
+backLeftSpriteFilePath = "jack back left.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -16)
@@ -219,6 +223,7 @@ position = Vector2(340, 229)
 
 [node name="DoorObject2" parent="." instance=ExtResource("10_ir8iy")]
 position = Vector2(915, 454)
+requiresEvidence = true
 
 [node name="InteractionText" type="Label" parent="."]
 offset_left = 448.0
