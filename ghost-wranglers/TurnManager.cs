@@ -35,6 +35,9 @@ public partial class TurnManager : Node2D
 	//How many interactions have happened (1 per object)
 	int interactionCount = 0;
 
+	//How many interactions must trigger to win the game
+	const int interactionsGoal = 5;
+
 
 	public List<CharacterController> ActiveCharacters
 	{
@@ -82,6 +85,11 @@ public partial class TurnManager : Node2D
 	{
 		get { return interactionCount; }
 		set { interactionCount = value; }
+	}
+
+	public int InteractionsGoal
+	{
+		get { return interactionsGoal; }
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -174,21 +182,25 @@ public partial class TurnManager : Node2D
 			{
 				case Key.W:
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, -grid[1] / 2));
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].backRightSpriteFilePath);
 					break;
 
 				case Key.A:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, -grid[1] / 2));
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].backLeftSpriteFilePath);
 					break;
 
 				case Key.S:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, grid[1] / 2));
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].frontLeftSpriteFilePath);
 					break;
 
 				case Key.D:
 					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, grid[1] / 2));
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].frontRightSpriteFilePath);
 					break;
 
 				//Interacts with any nearby world objects

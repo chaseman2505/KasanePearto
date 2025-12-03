@@ -11,6 +11,19 @@ public partial class CharacterController : Node2D
 
 	public int health = 1;
 
+	//The file paths for each sprite direction
+	[Export]
+	public string frontRightSpriteFilePath;
+
+	[Export]
+	public string frontLeftSpriteFilePath;
+
+	[Export]
+	public string backRightSpriteFilePath;
+
+	[Export]
+	public string backLeftSpriteFilePath;
+
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
