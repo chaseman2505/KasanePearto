@@ -166,6 +166,10 @@ shape = SubResource("RectangleShape2D_wtcfe")
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 position = Vector2(320, 160)
 script = ExtResource("6_ir8iy")
+frontRightSpriteFilePath = "mack front right.png"
+frontLeftSpriteFilePath = "mack front left.png"
+backRightSpriteFilePath = "mack back right.png"
+backLeftSpriteFilePath = "mack back left.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
 position = Vector2(0, -16)
@@ -178,6 +182,10 @@ shape = SubResource("RectangleShape2D_ir8iy")
 [node name="CharacterBody2D3" type="CharacterBody2D" parent="."]
 position = Vector2(224, 208)
 script = ExtResource("6_ir8iy")
+frontRightSpriteFilePath = "Clyde front right.png"
+frontLeftSpriteFilePath = "Clyde front left.png"
+backRightSpriteFilePath = "Clyde back right.png"
+backLeftSpriteFilePath = "Clyde back left.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D3"]
 position = Vector2(0, -16)
@@ -190,6 +198,10 @@ shape = SubResource("RectangleShape2D_wtcfe")
 [node name="CharacterBody2D4" type="CharacterBody2D" parent="."]
 position = Vector2(256, 128)
 script = ExtResource("6_ir8iy")
+frontRightSpriteFilePath = "Zack front right.png"
+frontLeftSpriteFilePath = "Zack front left.png"
+backRightSpriteFilePath = "Zack back right.png"
+backLeftSpriteFilePath = "Zack back left.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D4"]
 position = Vector2(0, -16)
