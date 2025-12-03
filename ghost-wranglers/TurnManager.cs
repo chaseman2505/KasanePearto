@@ -36,7 +36,7 @@ public partial class TurnManager : Node2D
 	int interactionCount = 0;
 
 	//How many interactions must trigger to win the game
-	const int interactionsGoal = 3;
+	const int interactionsGoal = 5;
 
 
 	public List<CharacterController> ActiveCharacters

@@ -12,7 +12,7 @@ public partial class DoorObject : WorldObject
 
 	//What the interaction text will display if the door is locked
 	[Export]
-	protected string interactionText2 = "This case isn't solved yet. I need to collect enough evidence before I leave.\nPress Esc to Hide/Show text";
+	protected string interactionText2 = "This case isn't solved yet.\nI need to collect enough evidence before I leave.\nPress Esc to Hide/Show text";
 	
 	//If the door requires all evidence to be collected in order to open
 	[Export]

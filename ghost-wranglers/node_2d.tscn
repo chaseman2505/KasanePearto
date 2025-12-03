@@ -202,6 +202,7 @@ shape = SubResource("RectangleShape2D_wtcfe")
 [node name="WorldObject" type="CharacterBody2D" parent="."]
 position = Vector2(609, 556)
 script = ExtResource("10_nr8wp")
+interactionText = "This guy is dead. Looks like he had his head bashed in 21 times."
 
 [node name="Sprite2D" type="Sprite2D" parent="WorldObject"]
 position = Vector2(0, -15)
@@ -214,9 +215,22 @@ shape = SubResource("RectangleShape2D_4d7sh")
 [node name="WorldObject2" parent="." instance=ExtResource("6_kdubu")]
 visible = false
 position = Vector2(196, 402)
+interactionText = "This chair has blood on it. But what could have caused that?"
+
+[node name="WorldObject3" parent="." instance=ExtResource("6_kdubu")]
+visible = false
+position = Vector2(258, 435)
+interactionText = "There's no blood on this chair, so I guess it's not that important."
+
+[node name="WorldObject4" parent="." instance=ExtResource("6_kdubu")]
+visible = false
+position = Vector2(482, 387)
+interactionText = "This is a lamp."
 
 [node name="BoxObject" parent="." instance=ExtResource("7_d21ai")]
 position = Vector2(932, 290)
+interactionText = "This is a suspiciously murderous box."
+interactionText = "This is a suspiciously murderous box."
 
 [node name="DoorObject" parent="." instance=ExtResource("10_ir8iy")]
 position = Vector2(340, 229)
