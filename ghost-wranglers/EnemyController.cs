@@ -49,10 +49,10 @@ public partial class EnemyController : CharacterBody2D
 		//Increments timer by the elapsed delta time
 		timer += delta;
 
-		if (timer >= 0.4)
+		if (timer >= 0.2)
 		{
 			//Resets timer
-			timer -= 0.4;
+			timer -= 0.2;
 
 			//The space where the enemy can move
 			var space = turnManager.CollisionPlane.GetWorld2D().DirectSpaceState;
