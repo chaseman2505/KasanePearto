@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://ca1rwv7lucky2"]
+[gd_scene load_steps=38 format=4 uid="uid://ca1rwv7lucky2"]
 
 [ext_resource type="Script" uid="uid://cgd11jditmcgd" path="res://TurnManager.cs" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://baqt7greft5yk" path="res://isometric tilemap.png" id="2_hqns4"]
@@ -17,6 +17,14 @@
 [ext_resource type="Texture2D" uid="uid://cddeiqckgukog" path="res://Clyde front right.png" id="10_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://bf61gi6krkubn" path="res://Zack front right.png" id="11_fs4d3"]
 [ext_resource type="PackedScene" uid="uid://yyyjulco3bk2" path="res://enemy.tscn" id="11_hqns4"]
+[ext_resource type="Texture2D" uid="uid://d4e03i1oij38v" path="res://victory.png" id="18_rjqkl"]
+[ext_resource type="Script" uid="uid://b0mbdmajy00gl" path="res://WinScreen.cs" id="19_7vxoj"]
+[ext_resource type="Texture2D" uid="uid://m2mb58g6h287" path="res://game over.png" id="19_fs4d3"]
+[ext_resource type="Script" uid="uid://dclukbt3nvuxd" path="res://LoseScreen.cs" id="20_fs4d3"]
+[ext_resource type="Texture2D" uid="uid://cmjv6if2rx5h8" path="res://zack face.png" id="22_bjha6"]
+[ext_resource type="Texture2D" uid="uid://cd5qvhxoamyyd" path="res://clyde face.png" id="23_gt76g"]
+[ext_resource type="Texture2D" uid="uid://1wt12t8x3g74" path="res://jack face.png" id="24_1fr6y"]
+[ext_resource type="Texture2D" uid="uid://djlp08nrqki1y" path="res://mack face.png" id="25_2hxjc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0ka3"]
 texture = ExtResource("2_hqns4")
@@ -69,13 +77,11 @@ sources/4 = SubResource("TileSetAtlasSource_nr8wp")
 sources/1 = SubResource("TileSetAtlasSource_kdubu")
 sources/0 = SubResource("TileSetAtlasSource_x0ka3")
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ir8iy"]
-a = Vector2(255, 80)
-b = Vector2(37, 191)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vxoj"]
+size = Vector2(41, 75.45154)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_hqns4"]
-a = Vector2(447, 170)
-b = Vector2(257, 79)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
+size = Vector2(108.00923, 4.6474504)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqns4"]
 texture = ExtResource("2_hqns4")
@@ -122,6 +128,27 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAHACEAAAABAAkAAAAHACAAAAACAAkAAAAHAB8AAAABAAkAAAAIAB4AAAACAAkAAAAIAB0AAAABAAkAAAAJABwAAAACAAkAAAAJABsAAAABAAkAAAAKABoAAAACAAkAAAAKABkAAAABAAkAAAALABoAAAACAAkAAAALABsAAAABAAkAAAAMABwAAAACAAkAAAAMAB0AAAABAAkAAAAMAB4AAAACAAkAAAALAB8AAAABAAkAAAALACAAAAACAAkAAAAKACEAAAABAAkAAAAKACAAAAACAAkAAAAJACEAAAABAAkAAAAJACAAAAACAAkAAAAIAB8AAAABAAkAAAAJAB0AAAABAAkAAAAKABwAAAACAAkAAAAKABsAAAABAAkAAAAKAB4AAAACAAkAAAAJAB8AAAABAAkAAAAKAB0AAAABAAkAAAALAB4AAAACAAkAAAAKAB8AAAABAAkAAAALAB0AAAABAAkAAAALABwAAAACAAkAAAAKACIAAAACAAkAAAAKABgAAAACAAkAAAAJABkAAAABAAkAAAAJABoAAAACAAkAAAAIABsAAAABAAkAAAAIABwAAAACAAkAAAAHAB0AAAABAAkAAAAHAB4AAAACAAkAAAAGAB8AAAABAAkAAAAGACAAAAACAAkAAAAFACEAAAABAAkAAAAFACAAAAACAAkAAAAFAB8AAAABAAkAAAAGACIAAAACAAkAAAAGACEAAAABAAkAAAAGACMAAAABAAkAAAAHACIAAAACAAkAAAAFAB4AAAACAAkAAAAEAB8AAAABAAkAAAAEAB4AAAACAAkAAAAEAB0AAAABAAkAAAAEABwAAAACAAkAAAADABsAAAABAAkAAAADABwAAAACAAkAAAADAB0AAAABAAkAAAAFAB0AAAABAAkAAAAGABwAAAACAAkAAAAGABsAAAABAAkAAAAHABoAAAACAAkAAAAGABkAAAABAAkAAAAHABgAAAACAAkAAAAIABAAAAACAAkAAAAHABEAAAABAAkAAAAHABIAAAACAAkAAAAGABMAAAABAAkAAAAGABQAAAACAAkAAAAFABUAAAABAAkAAAAFABYAAAACAAkAAAAEABcAAAABAAkAAAAEABgAAAACAAkAAAADABkAAAABAAkAAAAEABoAAAACAAkAAAAEABkAAAABAAkAAAADABoAAAACAAkAAAACABsAAAABAAkAAAAHABkAAAABAAkAAAAIABIAAAACAAkAAAAHABMAAAABAAkAAAAHABQAAAACAAkAAAAGABUAAAABAAkAAAAGABYAAAACAAkAAAAFABcAAAABAAkAAAAFABgAAAACAAkAAAAEABsAAAABAAkAAAAFABoAAAACAAkAAAAFABsAAAABAAkAAAAFABkAAAABAAkAAAAGABgAAAACAAkAAAAGABoAAAACAAkAAAAGABcAAAABAAkAAAAHABYAAAACAAkAAAAHABUAAAABAAkAAAACABoAAAACAAkAAAACABkAAAABAAkAAAADABgAAAACAAkAAAADABcAAAABAAkAAAAEABYAAAACAAkAAAAEABUAAAABAAkAAAAFABQAAAACAAkAAAAFABMAAAABAAkAAAAGABIAAAACAAkAAAAGABEAAAABAAkAAAAHABAAAAACAAkAAAAHAA8AAAABAAkAAAAIABoAAAACAAkAAAAHABsAAAABAAkAAAAHABwAAAACAAkAAAAGAB0AAAABAAkAAAAGAB4AAAACAAkAAAAHAA4AAAACAAkAAAAGAA0AAAABAAkAAAAEAAkAAAADAAkAAAAEAAgAAAADAAkAAAADAAcAAAADAAkAAAADAAgAAAADAAkAAAACAAkAAAADAAkAAAACAAoAAAADAAkAAAABAAsAAAADAAkAAAABAAoAAAADAAkAAAABAAwAAAADAAkAAAAAAAsAAAADAAkAAAABAAkAAAADAAkAAAACAAgAAAADAAkAAAACAAcAAAADAAkAAAADAAkAAAADAAkAAAAEAAoAAAADAAkAAAAGAA4AAAACAAkAAAAGAA8AAAABAAkAAAAGABAAAAACAAkAAAAFABEAAAABAAkAAAAFABIAAAACAAkAAAAEABEAAAABAAkAAAAEABIAAAACAAkAAAAEABMAAAABAAkAAAAFABAAAAACAAkAAAAFAA8AAAABAAkAAAAEAA8AAAABAAkAAAAEABAAAAACAAkAAAADABEAAAABAAkAAAABAA0AAAADAAkAAAACAAwAAAADAAkAAAACAAsAAAADAAkAAAADAAoAAAADAAkAAAADAAwAAAADAAkAAAACAA0AAAADAAkAAAACAA4AAAADAAkAAAADAAsAAAADAAkAAAACAA8AAAADAAkAAAANABwAAAACAAkAAAAMABsAAAABAAkAAAAMABoAAAACAAkAAAALABkAAAABAAkAAAALABgAAAACAAkAAAAKABcAAAABAAkAAAALABYAAAACAAkAAAALABUAAAABAAkAAAALABcAAAABAAkAAAAMABgAAAACAAkAAAAMABcAAAABAAkAAAAMABYAAAACAAkAAAAMABQAAAACAAkAAAAMABUAAAABAAkAAAANABYAAAACAAkAAAANABUAAAABAAkAAAANABQAAAACAAkAAAAMABMAAAABAAkAAAANABIAAAACAAkAAAANABEAAAABAAkAAAANABMAAAABAAkAAAAOABQAAAACAAkAAAAOABMAAAABAAkAAAAOABIAAAACAAkAAAAOABAAAAACAAkAAAAOABEAAAABAAkAAAAPABIAAAACAAkAAAAOABoAAAACAAkAAAAOABkAAAABAAkAAAANABsAAAABAAkAAAANABoAAAACAAkAAAANABkAAAABAAkAAAAOABgAAAACAAkAAAANABgAAAACAAkAAAAMABkAAAABAAkAAAANABcAAAABAAkAAAADAAYAAAADAAkAAAAFABwAAAACAAkAAAAJAB4AAAACAAkAAAADAA4AAAADAAkAAAADAA0AAAADAAkAAAAEAAwAAAADAAkAAAAEAAsAAAADAAkAAAAFAAoAAAADAAkAAAAFAAkAAAADAAkAAAAFAAgAAAADAAkAAAAEAAcAAAADAAkAAAAEAAYAAAADAAkAAAADAAUAAAADAAkAAAAEAA0AAAADAAkAAAADABIAAAACAAkAAAACABMAAAABAAkAAAACABQAAAACAAkAAAABABUAAAABAAkAAAABABYAAAACAAkAAAAAABcAAAABAAkAAAABABgAAAACAAkAAAABABkAAAABAAkAAAAOABcAAAABAAkAAAAPABYAAAACAAkAAAAPABUAAAABAAkAAAAQABQAAAACAAkAAAAPABMAAAABAAkAAAAIABQAAAACAAkAAAAIABMAAAABAAkAAAAJABIAAAACAAkAAAAIABEAAAABAAkAAAAGAAwAAAACAAkAAAAFAA0AAAABAAkAAAAFAA4AAAACAAkAAAADABYAAAACAAkAAAADABUAAAABAAkAAAAEABQAAAACAAkAAAADABMAAAABAAkAAAADABQAAAACAAkAAAACABUAAAABAAkAAAACABYAAAACAAkAAAABABcAAAABAAkAAAACABgAAAACAAkAAAACABcAAAABAAkAAAAOABYAAAACAAkAAAAPABQAAAACAAkAAAAOABUAAAABAAkAAAAPABgAAAACAAkAAAAQABYAAAACAAkAAAAPABcAAAABAAkAAAAQABUAAAABAAkAAAAIACAAAAACAAkAAAAIACEAAAABAAkAAAAIACIAAAACAAkAAAAJACIAAAACAAkAAAAJACQAAAACAAkAAAAIACMAAAABAAkAAAAJACMAAAABAAkAAAADABAAAAADAAkAAAAEAA4AAAADAAkAAAADAA8AAAADAAkAAAAFAAwAAAADAAkAAAAFAAsAAAADAAkAAAAGAAoAAAADAAkAAAA=")
 tile_set = SubResource("TileSet_d2bti")
 
+[node name="WinArea" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(948, 491)
+rotation = -0.6614798
+shape = SubResource("RectangleShape2D_7vxoj")
+
+[node name="Walls" type="CharacterBody2D" parent="."]
+
+[node name="wall1" type="CollisionShape2D" parent="Walls"]
+position = Vector2(267.14566, 262.29208)
+rotation = -0.49741888
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_flf07")
+
+[node name="wall2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(398.3812, 195.79305)
+rotation = -0.49741888
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_flf07")
+
 [node name="walls" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAACAAcAAAAEAAgAAAACAAgAAAAEAAgAAAABAAkAAAAEAAgAAAABAAoAAAAEAAgAAAAAAAsAAAAEAAgAAAADAAYAAAAEAAgAAAADAAUAAAADAAgAAAAEAAYAAAAFAAgAAAAEAAcAAAAFAAgAAAAFAAgAAAAFAAgAAAAFAAkAAAAFAAgAAAAAAAwAAAAFAAgAAAAAAA0AAAAFAAgAAAABAA4AAAAFAAgAAAABAA8AAAAFAAgAAAACABAAAAAFAAgAAAAGAAwAAAAAAAgAAAAGAA0AAAACAAgAAAAHAA4AAAACAAgAAAAHAA8AAAACAAgAAAAIABAAAAACAAgAAAAIABEAAAACAAgAAAAJABIAAAACAAgAAAAJABMAAAABAAgAAAAJABQAAAABAAgAAAAIABUAAAABAAgAAAAIABYAAAABAAgAAAAHABcAAAABAAgAAAADABIAAAABAAgAAAACABMAAAABAAgAAAABABUAAAABAAgAAAACABQAAAABAAgAAAABABYAAAABAAgAAAAAABcAAAABAAgAAAAJABoAAAABAAgAAAAJABkAAAABAAgAAAAKABgAAAABAAgAAAAKABcAAAABAAgAAAALABYAAAABAAgAAAALABUAAAABAAgAAAAIABoAAAACAAgAAAAHABkAAAACAAgAAAAHABgAAAACAAgAAAAOABAAAAAAAAgAAAAOABEAAAACAAgAAAAPABIAAAACAAgAAAAPABMAAAACAAgAAAAQABQAAAACAAgAAAAMABQAAAABAAgAAAAMABMAAAABAAgAAAANABIAAAABAAgAAAANABEAAAABAAgAAAAQABUAAAACAAgAAAACABEAAAAFAAgAAAADABEAAAABAAgAAAAEABAAAAABAAgAAAAGAAsAAAAEAAgAAAAGAAoAAAAFAAgAAAAEAA8AAAABAAgAAAAFAA0AAAABAAgAAAA=")
@@ -132,16 +159,8 @@ position = Vector2(-4, -1)
 collision_layer = 255
 script = ExtResource("6_hqns4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/Area2DPlane"]
-shape = SubResource("SegmentShape2D_ir8iy")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/Area2DPlane"]
-shape = SubResource("SegmentShape2D_hqns4")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls/Area2DPlane"]
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/Area2DPlane"]
-polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452, 176, 420, 191, 358, 224, 420, 192, 644, 303, 484, 384, 580, 431, 933, 257, 1123, 352, 941, 443, 965, 432, 1115, 509, 1021, 558, 870, 480, 907.34875, 459.87683, 612, 608, 518, 559, 454, 593)
+polygon = PackedVector2Array(37, 385, 324, 238, 228, 286, 37, 194, 261, 81, 452, 176, 420, 191, 358, 224, 420, 192, 644, 303, 484, 384, 580, 431, 933, 257, 1123, 352, 965, 432, 870, 480, 612, 608, 518, 559, 454, 593)
 
 [node name="Props" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAACABUAAAACAAYAAAAHABgAAAAFAAYAAAAOABkAAAAEAAYAAAACABkAAAAGAAcAAAADABoAAAAAAAYAAAADABsAAAAEAAcAAAAHABkAAAADAAcAAAA=")
@@ -153,7 +172,7 @@ script = ExtResource("6_ir8iy")
 frontRightSpriteFilePath = "jack front right.png"
 frontLeftSpriteFilePath = "jack front left.png"
 backRightSpriteFilePath = "jack back right.png"
-backLeftSpriteFilePath = "jack back left.png"
+backLeftSpriteFilePath = "Jack back left.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -16)
@@ -252,6 +271,7 @@ position = Vector2(915, 454)
 requiresEvidence = true
 
 [node name="InteractionText" type="Label" parent="."]
+visible = false
 offset_left = 448.0
 offset_top = 21.0
 offset_right = 689.0
@@ -283,3 +303,89 @@ text = "---> Character 1
 
 [node name="Enemy" parent="." instance=ExtResource("11_hqns4")]
 position = Vector2(418, 451)
+
+[node name="WinScreen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(580, 341)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("18_rjqkl")
+script = ExtResource("19_7vxoj")
+
+[node name="RestartButton" type="Button" parent="WinScreen"]
+offset_left = -557.5
+offset_top = 236.24997
+offset_right = -162.50006
+offset_bottom = 368.74997
+
+[node name="QuitButton" type="Button" parent="WinScreen"]
+offset_left = 361.25
+offset_top = 236.24997
+offset_right = 543.75
+offset_bottom = 368.74997
+
+[node name="WinText" type="Label" parent="WinScreen"]
+offset_left = -480.0
+offset_top = -28.750015
+offset_right = -30.0
+offset_bottom = 148.24998
+theme_override_font_sizes/font_size = 30
+text = "Press WASD to Move
+Press E to Interact
+Press M1 to Switch Characters
+Press Esc to Toggle Text On/Off"
+
+[node name="LoseScreen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(580, 341)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("19_fs4d3")
+script = ExtResource("20_fs4d3")
+
+[node name="RestartButton" type="Button" parent="LoseScreen"]
+offset_left = -557.5
+offset_top = 236.24997
+offset_right = -162.50006
+offset_bottom = 368.74997
+
+[node name="QuitButton" type="Button" parent="LoseScreen"]
+offset_left = 361.25
+offset_top = 236.24997
+offset_right = 543.75
+offset_bottom = 368.74997
+
+[node name="WinText" type="Label" parent="LoseScreen"]
+offset_left = -480.0
+offset_top = -28.750015
+offset_right = -30.0
+offset_bottom = 148.24998
+theme_override_font_sizes/font_size = 30
+text = "You couldn't solve the case and no one survived Finkleheimer's wrath"
+
+[node name="ZackFace" type="Sprite2D" parent="."]
+position = Vector2(1123, 122)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("22_bjha6")
+
+[node name="ClydeFace" type="Sprite2D" parent="."]
+position = Vector2(1123, 91)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_gt76g")
+
+[node name="JackFace" type="Sprite2D" parent="."]
+position = Vector2(1121, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("24_1fr6y")
+
+[node name="MackFace" type="Sprite2D" parent="."]
+position = Vector2(1122.112, 59)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("25_2hxjc")
+
+[node name="Arrow" type="Label" parent="."]
+offset_left = 156.0
+offset_top = 110.0
+offset_right = 164.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 9
+text = "|
+\\/"

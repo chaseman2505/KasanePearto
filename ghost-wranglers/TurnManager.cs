@@ -23,8 +23,13 @@ public partial class TurnManager : Node2D
 	//A reference to the primary label UI
 	Label labelUI;
 
+	Sprite2D loseScreen;
+	Sprite2D winScreen;
+
 	//A reference to the character indicator label UI
 	Label characterIndicator;
+
+	Label arrow;
 
 	
 
@@ -37,6 +42,9 @@ public partial class TurnManager : Node2D
 
 	//How many interactions must trigger to win the game
 	const int interactionsGoal = 5;
+
+	//How many points were scored
+	int points = 0;
 
 
 	public List<CharacterController> ActiveCharacters
@@ -92,11 +100,19 @@ public partial class TurnManager : Node2D
 		get { return interactionsGoal; }
 	}
 
+	public int Points
+	{
+		get { return points; }
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		labelUI = GetNode<Label>("InteractionText");
 		characterIndicator = GetNode<Label>("CharacterIndicator");
+		arrow = GetNode<Label>("Arrow");
+		winScreen = GetNode<Sprite2D>("WinScreen");
+		loseScreen = GetNode<Sprite2D>("LoseScreen");
 
 		//Get all children of CharacterManager as Godot array
 		Godot.Collections.Array<Node> childrenArray = GetChildren();
@@ -143,22 +159,44 @@ public partial class TurnManager : Node2D
 		{
 			if (activeCharacters[i].health == 0)
 			{
+				activeCharacters[i].Visible = false;
+				activeCharacters.Remove(activeCharacters[i]);
 				//Switches to another character if the current character died, removes character from the list, and makes them invisible
 				if (i == currentCharacterIndex)
 				{
 					TurnSwitch();
 				}
-				activeCharacters[i].Visible = false;
-				activeCharacters.Remove(activeCharacters[i]);
 				i--;
 			}
 		}
 
 		//Checks if every character is dead
-		if (activeCharacters.Count == 0)
+		if (activeCharacters.Count == 0 && points == 0)
 		{
 			gameState = GameState.loss;
 		}
+		else if (activeCharacters.Count == 0 && points > 0)
+		{
+			gameState = GameState.win;
+		}
+
+		if (gameState == GameState.loss)
+		{
+			loseScreen.Visible = true;
+			arrow.Visible = false;
+		}
+
+		if (gameState == GameState.win)
+		{
+			winScreen.Visible = true;
+			arrow.Visible = false;
+		}
+
+		if (gameState == GameState.active)
+		{
+			arrow.GlobalPosition = activeCharacters[currentCharacterIndex].GlobalPosition + new Vector2(0, -75);
+		}
+
 	}
 
 
@@ -182,25 +220,22 @@ public partial class TurnManager : Node2D
 			{
 				case Key.W:
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, -grid[1] / 2));
-					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].backRightSpriteFilePath);
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://" + activeCharacters[currentCharacterIndex].backRightSpriteFilePath);
 					break;
 
 				case Key.A:
-					//activeCharacters[currentCharacterIndex].MoveCharacter(-32.0f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, -grid[1] / 2));
-					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].backLeftSpriteFilePath);
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://" + activeCharacters[currentCharacterIndex].backLeftSpriteFilePath);
 					break;
 
 				case Key.S:
-					//activeCharacters[currentCharacterIndex].MoveCharacter(0, 50f);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(-grid[0] / 2, grid[1] / 2));
-					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].frontLeftSpriteFilePath);
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://" + activeCharacters[currentCharacterIndex].frontLeftSpriteFilePath);
 					break;
 
 				case Key.D:
-					//activeCharacters[currentCharacterIndex].MoveCharacter(50f, 0);
 					activeCharacters[currentCharacterIndex].Translate(new Vector2(grid[0] / 2, grid[1] / 2));
-					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>(activeCharacters[currentCharacterIndex].frontRightSpriteFilePath);
+					activeCharacters[currentCharacterIndex].GetChild<Sprite2D>(0).Texture = GD.Load<Texture2D>("res://" + activeCharacters[currentCharacterIndex].frontRightSpriteFilePath);
 					break;
 
 				//Interacts with any nearby world objects
@@ -232,8 +267,9 @@ public partial class TurnManager : Node2D
 				//CollisionMask = uint.MaxValue 
 			};
 
+			var results = space.IntersectPoint(point);
 			//Moves character back to previous position if the new position is out of bounds
-			if (space.IntersectPoint(point).Count == 0)
+			if (results.Count == 0)
 			{
 				activeCharacters[currentCharacterIndex].GlobalPosition = activeCharacters[currentCharacterIndex].prevPos;
 			}
@@ -251,6 +287,7 @@ public partial class TurnManager : Node2D
 			//Checks for all collisions along the segment
 			var results2 = space.IntersectShape(shapeQuery);
 
+			bool collisionOccured = false;
 			//Moves character back to previous position if the segment is colliding with any doors
 			foreach (var result in results2)
 			{
@@ -259,9 +296,29 @@ public partial class TurnManager : Node2D
 					if(((DoorObject)result["collider"]).isOpen == false)
 					{
 						activeCharacters[currentCharacterIndex].GlobalPosition = activeCharacters[currentCharacterIndex].prevPos;
+						collisionOccured = true;
 					}
 				}
+				else if(((Node)result["collider"]).Name == "Walls")
+				{
+					activeCharacters[currentCharacterIndex].GlobalPosition = activeCharacters[currentCharacterIndex].prevPos;
+					collisionOccured = true;
+				}
 			}
+
+
+			foreach (var result in results2)
+			{
+				if(collisionOccured == false && ((Node)result["collider"]).Name == "WinArea")
+				{
+					activeCharacters[currentCharacterIndex].Visible = false;
+					activeCharacters.Remove(activeCharacters[currentCharacterIndex]);
+					TurnSwitch();
+					points++;
+					GD.Print(points);
+				}
+			}
+
 
 		}
 
@@ -295,6 +352,9 @@ public partial class TurnManager : Node2D
 				break;
 		}
 
-		activeCharacters[currentCharacterIndex].ReceiveTurn();
+		if(activeCharacters.Count > 0)
+		{
+			activeCharacters[currentCharacterIndex].ReceiveTurn();
+		}
 	}
 }
